@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Lushly — Simple Store</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+  <div class="left">
+    <img src="assets/logo.png" class="logo" alt="Lushly logo">
+    <h1>Lushly Herbal Products</h1>
+  </div>
+
+  <div class="cart-top">
+    <span id="cartMiniCount">0 items</span>
+    <button id="cartMiniBtn" class="btn btn-primary">Checkout</button>
+  </div>
+</header>
+
+  <main class="container">
+   <section class="hero-marketing">
+  <h2>Transform Your Hair Naturally</h2>
+  <p class="sub">
+    7 powerful herbs blended with pure coconut oil to boost hair growth,
+    stop hair fall & bring back natural shine.
+  </p>
+
+  <div class="benefit-badges">
+
+    <span>🌿 100% Herbal</span>
+    <span>✨ Boosts Hair Growth</span>
+    <span>🛡️ Stops Hair Fall</span>
+    <span>💆 Strengthens Roots</span>
+    <span>🌺 Adds Shine & Smoothness</span>
+
+  </div>
+
+  <div class="why-works">
+    <h3>Why It Works?</h3>
+    <p>
+      Our oil deeply penetrates your scalp, strengthens roots, improves blood
+      circulation, and nourishes every strand from within.
+    </p>
+  </div>
+
+  <div class="guarantee">
+    <div>
+      <strong>✔ Chemical-Free</strong>
+      <p>No mineral oil or preservatives.</p>
+    </div>
+    <div>
+      <strong>✔ Ayurvedic Formula</strong>
+      <p>Made with traditional slow-infusion.</p>
+    </div>
+    <div>
+      <strong>✔ Real Results</strong>
+      <p>Visible change within 7–14 days.</p>
+    </div>
+  </div>
+
+</section>
+
+
+    <section id="products" class="products">
+      <article class="product" data-sku="LUSH-200" data-price="149">
+        <img src="assets/product1.jpg" alt="200ml">
+        <h3>Lushly Herbal Hair Oil — 200 ml</h3>
+        <p class="price">₹149</p>
+        <div class="controls">
+          <label>Qty <input type="number" class="qty" value="1" min="1"></label>
+          <button class="add btn">Add to cart</button>
+        </div>
+      </article>
+
+      <article class="product" data-sku="LUSH-500" data-price="349">
+        <img src="assets/product2.png" alt="500ml">
+        <h3>Lushly Herbal Hair Oil — 500 ml</h3>
+        <p class="price">₹349</p>
+        <div class="controls">
+          <label>Qty <input type="number" class="qty" value="1" min="1"></label>
+          <button class="add btn">Add to cart</button>
+        </div>
+      </article>
+    </section>
+
+    <section id="cart" class="cart">
+      <h2>Your Cart</h2>
+      <div id="cartItems">Cart is empty</div>
+      <p id="cartTotal"></p>
+      <button id="checkoutBtn" class="btn btn-primary" disabled>Checkout</button>
+    </section>
+
+    <section id="checkout" class="checkout hidden">
+      <h2>Checkout</h2>
+      <form id="checkoutForm">
+        <label>Full name<input name="name" required></label>
+        <label>Phone / WhatsApp<input name="phone" required></label>
+        <label>Address<textarea name="address" rows="2" required></textarea></label>
+        <label>City<input name="city" required></label>
+        <label>PIN code<input name="pin" required></label>
+
+        <h4>Payment</h4>
+        <label><input type="radio" name="payment" value="cod" checked> Cash on Delivery (COD)</label>
+        <label><input type="radio" name="payment" value="upi"> UPI (GPay/PhonePe)</label>
+
+        <div class="actions">
+          <button type="submit" class="btn btn-primary">Place order</button>
+          <button type="button" id="cancelCheckout" class="btn">Cancel</button>
+        </div>
+      </form>
+      <div id="orderResult"></div>
+    </section>
+<section class="info-upgraded">
+  <div class="info-block">
+    <div class="info-icon">🌿</div>
+    <h2>About Us</h2>
+    <p>
+      We are dedicated to providing high-quality Ayurvedic hair care products 
+      made from pure, natural, and traditional ingredients. Our mission is to 
+      deliver powerful herbal solutions that promote strong, shiny, and healthy 
+      hair — without chemicals or preservatives.
+    </p>
+    <p>
+      Every bottle is crafted with care using ingredients like Hibiscus, Curry 
+      Leaves, Bhringraj, Amla, and Coconut Oil for genuine nourishment and 
+      long-lasting results.
+    </p>
+  </div>
+
+  <div class="info-block">
+    <div class="info-icon">📞</div>
+    <h2>Contact Us</h2>
+    <p>Have questions or want to place an order?</p>
+
+    <p><strong>WhatsApp / Call</strong></p>
+
+    <a href="https://wa.me/916384971535" class="contact-btn2">
+      💬 6384971535
+    </a>
+
+    <p class="small-note">Available 24/7 on WhatsApp!</p>
+  </div>
+</section>
+<div class="transform-section">
+    <h2 class="transform-title" onclick="toggleTransform()">Real Customer Transformations ✨</h2>
+
+    <div id="transformContent" class="transform-content">
+        
+        <!-- Customer 1 -->
+        <h3 class="customer-title">Customer 1</h3>
+        <div class="comparison-container">
+            <img src="images/cus1-before.png" class="comparison-img active" id="c1-before">
+            <img src="images/cus1-after.png" class="comparison-img" id="c1-after">
+        </div>
+        <div class="switch-buttons">
+            <button onclick="showBefore('c1')" id="c1-before-btn" class="active">Before</button>
+            <button onclick="showAfter('c1')" id="c1-after-btn">After</button>
+        </div>
+
+        <!-- Customer 2 -->
+       <h3 class="customer-title">Customer 2</h3>
+
+<div class="comparison-container">
+    <img src="images/cus2-before.png" class="comparison-img active" id="c2-before">
+    <img src="images/cus2-after.png" class="comparison-img" id="c2-after">
+</div>
+
+<div class="switch-buttons">
+    <button onclick="showBefore('c2')" id="c2-before-btn" class="active">Before</button>
+    <button onclick="showAfter('c2')" id="c2-after-btn">After</button>
+</div>
+
+    </div>
+</div>
+
+
+
+    <footer class="site-footer">
+    
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+<a href="https://wa.me/916384971535" class="whatsapp-float" target="_blank">
+  💬
+</a>
+
+</body>
+</html>
