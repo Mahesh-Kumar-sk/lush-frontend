@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Admin — Orders</title>
+<link rel="stylesheet" href="styles.css"></head><body>
+  <main class="container">
+    <h1>Admin — Orders</h1>
+    <div>
+      <label>Admin password: <input id="pw" type="password"></label>
+      <button id="load">Load orders</button>
+      <button id="export">Export CSV</button>
+    </div>
+    <div id="orders"></div>
+  </main>
+<script>
+document.getElementById('load').addEventListener('click', async ()=>{
+  const pw = document.getElementById('pw').value;
+  const res = await fetch('/admin/orders?pw=' + encodeURIComponent(pw));
+  if (res.status === 401){ alert('Unauthorized'); return; }
+  const data = await res.json();
+  const out = document.getElementById('orders');
+  if (!data.length) out.innerHTML = '<p>No orders yet.</p>';
+  else {
+    out.innerHTML = data.map(o=> '<div class="order"><h3>' + o.orderId + ' — ' + (o.shipping?.name||'') + '</h3><p>Total: ₹' + o.total + '</p><pre>' + JSON.stringify(o,null,2) + '</pre></div>').join('');
+  }
+});
+document.getElementById('export').addEventListener('click', async ()=>{
+  const pw = document.getElementById('pw').value;
+  const res = await fetch('/admin/orders?pw=' + encodeURIComponent(pw));
+  if (res.status === 401){ alert('Unauthorized'); return; }
+  const data = await res.json();
+  const csv = ['OrderId,Name,Total,Status,CreatedAt'].concat(data.map(o=> [o.orderId, (o.shipping?.name||''), o.total, o.status, o.createdAt].map(v=> '"'+String(v).replace(/"/g,'""')+'"').join(',') )).join('\n');
+  const blob = new Blob([csv],{type:'text/csv'});
+  const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = 'orders.csv'; a.click();
+});
+</script>
+</body></html>
